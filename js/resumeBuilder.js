@@ -143,25 +143,30 @@ var work =
 
 // Flow Controll - Quiz: for in loop
 
-for (job in work.jobs)
+function displayWork ()
 {
-  $("#workExperience").append(HTMLworkStart);
+    for (var job in work.jobs)
+    {
+    $("#workExperience").append(HTMLworkStart);
 
-  var formattedEmployer = HTMLworkEmployer.replace ("%data%", work.jobs[job].employer);
-  var formattedTitle = HTMLworkTitle.replace ("%data%", work.jobs[job].title);
+    var formattedEmployer = HTMLworkEmployer.replace ("%data%", work.jobs[job].employer);
+    var formattedTitle = HTMLworkTitle.replace ("%data%", work.jobs[job].title);
 
-  var formattedEmployerTitle = formattedEmployer + formattedTitle;
-  $(".work-entry:last").append(formattedEmployerTitle);
+    var formattedEmployerTitle = formattedEmployer + formattedTitle;
+    $(".work-entry:last").append(formattedEmployerTitle);
 
-  var formattedDates = HTMLworkDates.replace ("%data%", work.jobs[job].dates);
-  $(".work-entry:last").append(formattedDates);
+    var formattedDates = HTMLworkDates.replace ("%data%", work.jobs[job].dates);
+    $(".work-entry:last").append(formattedDates);
 
-  var formattedLocation = HTMLworkLocation.replace ("%data%", work.jobs[job].location);
-  $(".work-entry:last").append(formattedLocation);
+    var formattedLocation = HTMLworkLocation.replace ("%data%", work.jobs[job].location);
+    $(".work-entry:last").append(formattedLocation);
 
-  var formattedDescription = HTMLworkDescription.replace ("%data%", work.jobs[job].description);
-  $(".work-entry:last").append(formattedDescription);
+    var formattedDescription = HTMLworkDescription.replace ("%data%", work.jobs[job].description);
+    $(".work-entry:last").append(formattedDescription);
+    }
 }
+
+displayWork();
 
 // Project Object
 
@@ -172,15 +177,76 @@ var projects =
       {
         "title" : "Creating Customer Segments",
         "dates" : "2016",
-        "description" :  "- Reviewed unstructured data to understand the patterns and natural categories that the data fits into using matplotlib - Used multiple algorithms and both empirically and theoretically compared and contrasted their results utilizing scikit-learn - Made predictions about the natural categories of multiple types in a dataset, then checked these predictions against the result of unsupervised analysis documented in a Jupiter notebook",
+        "description" :  "- Reviewed unstructured data to understand the patterns and natural categories that the data fits into using matplotlib <br> - Used multiple algorithms and both empirically and theoretically compared and contrasted their results utilizing scikit-learn <br> - Made predictions about the natural categories of multiple types in a dataset, then checked these predictions against the result of unsupervised analysis documented in a Jupiter notebook",
         "images" : "array with string urls"
       },
       {
         "title" : "Bike Sharing Demand Prediction",
         "dates" : "2016",
-        "description" :  "- Utilizing machine learning to forecast the demand for the Washington DC bike sharing system 'capital bike share'. - Using different types of regression to find an algorithm to predict the demand for bikes based on calendric and weather information. - This project tries to create a forecasting function based on two years of historical data by utilizing the machine learning libraries scikit-learn and tensor-flow.",
+        "description" :  "- Utilizing machine learning to forecast the demand for the Washington DC bike sharing system 'capital bike share'. <br> - Using different types of regression to find an algorithm to predict the demand for bikes based on calendric and weather information. <br> - This project tries to create a forecasting function based on two years of historical data by utilizing the machine learning libraries scikit-learn and tensor-flow.",
         "images" : "array with string urls"
       }
-    ]
+    ],
 };
 // display: function taking no parameters
+
+projects.display  = function (pros) {
+  for (var project in pros.projects)
+    {
+      $("#projects").append(HTMLprojectStart);
+
+      var formattedProjectTitle = HTMLprojectTitle.replace ("%data%", pros.projects[project].title);
+      $(".project-entry:last").append(formattedProjectTitle);
+
+      var formattedProjectDates = HTMLprojectDates.replace ("%data%", pros.projects[project].dates);
+      $(".project-entry:last").append(formattedProjectDates);
+
+      var formattedProjectDescription = HTMLprojectDescription.replace ("%data%", pros.projects[project].description);
+      $(".project-entry:last").append(formattedProjectDescription);
+
+      var formattedProjectImage = HTMLprojectImage.replace ("%data%", pros.projects[project].images);
+      $(".project-entry:last").append(formattedProjectImage);
+  }
+}
+projects.display (projects);
+
+$ ("#mapDiv").append(googleMap);
+
+// Quiz: Collecting Click Locations
+/*
+$(document).click(function(loc) {
+  var x = loc.pageX;
+  var y = loc.pageY;
+  logClicks(x,y);
+});
+*/
+
+// Quiz Return statements
+/*
+function locationizer (work_obj) {
+  locArray = [];
+  for (var job in work_obj.jobs){
+    locArray.push(work_obj.jobs[job].location);}
+  return locArray;
+}
+
+console.log(locationizer (work));
+*/
+
+// Quiz: Internationalize Names
+/*
+$ ("#main").append(internationalizeButton);
+
+function inName (name) {
+  var nameArray = [];
+  nameArray = name.split(" ");
+  var newName = nameArray[0] + " " + nameArray[1].toUpperCase();
+  return newName;
+}
+*/
+
+
+/*
+//Function Test
+console.log(inName ("Sebastian Thrun"));
+*/
