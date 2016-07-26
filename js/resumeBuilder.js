@@ -7,7 +7,7 @@ This is empty on purpose! Your code to build the resume will go here.
 var bio =
 {
   "name" : "Philipp Vogler",
-  "role" : "Machine Learning Enineer",
+  "role" : "Machine Learning Engineer",
   "contacts" :
     {
       "mobile" : "0049 151 15779608",
@@ -34,6 +34,7 @@ $("#topContacts").append(formattedMobile);
 
 var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
 $("#topContacts").append(formattedEmail);
+$("#lets-connect").append(formattedEmail);
 
 var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
 $("#topContacts").append(formattedGithub);
@@ -113,6 +114,54 @@ var education =
     ]
 };
 // display: function taking no parameters
+
+
+
+education.displayschools  = function (education) {
+  for (var school in education.schools)
+    {
+      $("#education").append(HTMLschoolStart);
+
+      var formattedSchoolName = HTMLschoolName.replace ("%data%", education.schools[school].name);
+      $(".education-entry:last").append(formattedSchoolName);
+
+      var formattedSchoolDegree = HTMLschoolDegree.replace ("%data%", education.schools[school].degree);
+      $(".education-entry:last").append(formattedSchoolDegree);
+
+      var formattedSchoolDates = HTMLschoolDates.replace ("%data%", education.schools[school].dates);
+      $(".education-entry:last").append(formattedSchoolDates);
+
+      var formattedSchoolLocation = HTMLschoolLocation.replace ("%data%", education.schools[school].location);
+      $(".education-entry:last").append(formattedSchoolLocation);
+
+      var formattedSchoolMajor = HTMLschoolMajor.replace ("%data%", education.schools[school].majors);
+      $(".education-entry:last").append(formattedSchoolMajor);
+
+  }
+}
+education.displayschools(education);
+
+education.displayonlineCourses  = function (education) {
+
+  $(".education-entry:last").append(HTMLonlineClasses);
+
+  for (var onlineCourse in education.onlineCourses)
+    {
+      var formattedOnlineTitle = HTMLonlineTitle.replace ("%data%", education.onlineCourses[onlineCourse].title);
+      $(".education-entry:last").append(formattedOnlineTitle);
+
+      var formattedOnlineSchool = HTMLonlineSchool.replace ("%data%", education.onlineCourses[onlineCourse].school);
+      $(".education-entry:last").append(formattedOnlineSchool);
+
+      var formattedOnlineDates = HTMLonlineDates.replace ("%data%", education.onlineCourses[onlineCourse].dates);
+      $(".education-entry:last").append(formattedOnlineDates);
+
+      var formattedOnlineURL = HTMLonlineURL.replace ("%data%", education.onlineCourses[onlineCourse].url);
+      $(".education-entry:last").append(formattedOnlineURL);
+
+  }
+}
+education.displayonlineCourses(education);
 
 // Work Object
 
